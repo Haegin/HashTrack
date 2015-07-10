@@ -15,6 +15,8 @@ gem "bootstrap-sass"
 
 gem "uglifier"
 
+gem "therubyracer"
+
 group :development do
   gem "shotgun"
   gem "pry"
