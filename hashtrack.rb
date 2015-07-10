@@ -45,7 +45,11 @@ class HashTrack < Sinatra::Base
   enable :sessions
   enable :logging, :dump_errors, :raise_errors
 
-  CALLBACK_URL = "http://localhost:4567/oauth/callback"
+  CALLBACK_URL = if development?
+    "http://localhost:4567/oauth/callback"
+  else
+    "http://hashtrack.haeg.in/oauth/callback"
+  end
 
   Instagram.configure do |config|
     config.client_id = "048128b58c1848b999d6200c99aaf4bb"
