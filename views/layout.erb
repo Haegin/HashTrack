@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset='UTF-8' />
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>HashTrack</title>
-    <link href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css' rel='stylesheet' />
-    <link href='stylesheets/styles.css' rel='stylesheet' />
+    <%= stylesheet_tag 'application' %>
   </head>
   <body>
-    <%= yield %>
+    <div class="container-fluid" role="main">
+      <%= yield %>
+    </div>
+
+    <%= javascript_tag 'application' %>
   </body>
 </html>

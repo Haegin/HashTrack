@@ -1,0 +1,39 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "compass/css3";
+
+@media (min-width: $screen-sm-min) {
+  input {
+    width: 90%;
+    max-width: 10em;
+  }
+}
+
+body {
+  background: image-url("background.png");
+}
+
+.results {
+  @include column-width(300px);
+  @include column-gap(1em);
+  @include column-fill(auto);
+}
+
+.image {
+  @include border-radius(4px);
+  border: 1px solid $gray;
+  padding: 1em;
+  background: $gray-lighter;
+  margin-bottom: 1em;
+  display: inline-block;
+  width: 100%;
+  img {
+    @include center-block;
+  }
+}
+
+.tag {
+  @include border_radius(20px);
+  border: 1px solid $gray-light;
+  margin-bottom: 2px;
+}

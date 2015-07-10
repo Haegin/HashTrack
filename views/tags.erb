@@ -1,11 +1,41 @@
-<h1>Searched for #<%= tags[0].name %></h1>
-<h2>Found <%= tags[0].media_count %> images</h2>
-<% for media_item in client.tag_recent_media(tags[0].name) %>
-  <div class='image'>
-    <a href='<%= media_item.link %>' target='_blank' >
-      <img src='<%= media_item.images.thumbnail.url %>'>
-    </a>
-    <p><%= media_item.user.username %></p>
-    <p><%= Time.at(media_item.created_time.to_i).strftime("%Y-%m-%d %H:%M") %></p>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="jumbotron">
+      <form action="tags" method="get">
+        <h1>#<input type="text" name="tag" value="<%= results[0].name %>" /></h1>
+        <p>Found <%= results[0].media_count %> images.</p>
+      </form>
+    </div>
   </div>
-<% end %>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="results">
+      <% for media_item in client.tag_recent_media(results[0].name) %>
+        <div class="image">
+          <a href="<%= media_item.link %>" target="_blank" >
+            <img class="img-thumbnail" src="<%= media_item.images.thumbnail.url %>">
+          </a>
+          <p class="text-center">
+            <a class="text-info" target="_blank" href="https://instagram.com/<%= media_item.user.username %>">
+              <%= media_item.user.username %>
+            </a>
+            <br /><% post_time = Time.at(media_item.created_time.to_i) %>
+            <span class="small">Posted <%= relative_time(post_time) %></span>
+          </p>
+          <p class="text-center small text-info">
+            <%= media_item.caption.text %>
+          <p>
+          <ul class="list-inline center-block">
+            <% media_item.tags.each do |tag| %>
+              <li class="tag">
+                <a href="/tags?tag=<%= tag %>"><%= tag %></a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
