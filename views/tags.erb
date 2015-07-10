@@ -1,16 +1,26 @@
 <div class="jumbotron">
-  <h1>#<%= tags[0].name %></h1>
-  <p>Found <%= tags[0].media_count %> images.</h2>
+  <form action="tags" method="get">
+    <h1>#<input type="text" name="tag" value="<%= results[0].name %>" /></h1>
+    <p>Found <%= results[0].media_count %> images.</h2>
+  </form>
 </div>
-<% for media_item in client.tag_recent_media(tags[0].name) %>
-  <div class='image'>
-    <a href='<%= media_item.link %>' target='_blank' >
-      <img class="img-thumbnail" src='<%= media_item.images.thumbnail.url %>'>
-    </a>
-    <p class="text-center">
-      <%= media_item.user.username %>
-      <br /><% post_time = Time.at(media_item.created_time.to_i) %>
-      <span class="small">Posted <%= relative_time(post_time) %></span>
-    </p>
-  </div>
-<% end %>
+
+<div class="results">
+  <% for media_item in client.tag_recent_media(results[0].name, count: 100) %>
+    <div class="image">
+      <a href="<%= media_item.link %>" target="_blank" >
+        <img class="img-thumbnail" src="<%= media_item.images.thumbnail.url %>">
+      </a>
+      <p class="text-center">
+        <%= media_item.user.username %>
+        <br /><% post_time = Time.at(media_item.created_time.to_i) %>
+        <span class="small">Posted <%= relative_time(post_time) %></span>
+      </p>
+      <ul class="list-inline">
+        <% media_item.tags.each do |tag| %>
+          <li><%= tag %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

@@ -70,8 +70,9 @@ class HashTrack < Sinatra::Base
 
   get "/tags" do
     client = Instagram.client(access_token: session[:access_token])
-    tags = client.tag_search('trsm')
-    erb :tags, locals: {client: client, tags: tags}
+    search_term = params[:tag] || "trsm"
+    results = client.tag_search(search_term)
+    erb :tags, locals: {client: client, results: results}
   end
 
   get "/limits" do
