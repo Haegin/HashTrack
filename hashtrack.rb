@@ -55,7 +55,7 @@ class HashTrack < Sinatra::Base
   end
 
   get "/" do
-    '<a href="/oauth/connect">Connect with Instagram</a>'
+    erb :connect
   end
 
   get "/oauth/connect" do

@@ -2,25 +2,15 @@
 @import "bootstrap";
 @import "compass/css3";
 
-$light-grey: #EEEFF0;
-$dark-grey:  #333333;
+@media (min-width: $screen-sm-min) {
+  input {
+    width: 90%;
+    max-width: 10em;
+  }
+}
 
 body {
   background: image-url("background.png");
-}
-
-.container {
-  padding-top: 1em;
-  height: 100%;
-  background: white;
-}
-@media (min-width: $screen-sm-min) {
-  .container { width: 90%; }
-}
-
-input {
-  width: 90%;
-  max-width: 10em;
 }
 
 .results {
@@ -31,13 +21,19 @@ input {
 
 .image {
   @include border-radius(4px);
-  border: 1px solid $dark-grey;
+  border: 1px solid $gray;
   padding: 1em;
-  background: $light-grey;
+  background: $gray-lighter;
   margin-bottom: 1em;
   display: inline-block;
   width: 100%;
   img {
     @include center-block;
   }
+}
+
+.tag {
+  @include border_radius(20px);
+  border: 1px solid $gray-light;
+  margin-bottom: 2px;
 }
