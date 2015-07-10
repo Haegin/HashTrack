@@ -1,0 +1,11 @@
+<h1>Searched for #<%= tags[0].name %></h1>
+<h2>Found <%= tags[0].media_count %> images</h2>
+<% for media_item in client.tag_recent_media(tags[0].name) %>
+  <div class='image'>
+    <a href='<%= media_item.link %>' target='_blank' >
+      <img src='<%= media_item.images.thumbnail.url %>'>
+    </a>
+    <p><%= media_item.user.username %></p>
+    <p><%= Time.at(media_item.created_time.to_i).strftime("%Y-%m-%d %H:%M") %></p>
+  </div>
+<% end %>
