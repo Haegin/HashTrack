@@ -1,11 +1,16 @@
-<h1>Searched for #<%= tags[0].name %></h1>
-<h2>Found <%= tags[0].media_count %> images</h2>
+<div class="jumbotron">
+  <h1>#<%= tags[0].name %></h1>
+  <p>Found <%= tags[0].media_count %> images.</h2>
+</div>
 <% for media_item in client.tag_recent_media(tags[0].name) %>
   <div class='image'>
     <a href='<%= media_item.link %>' target='_blank' >
-      <img src='<%= media_item.images.thumbnail.url %>'>
+      <img class="img-thumbnail" src='<%= media_item.images.thumbnail.url %>'>
     </a>
-    <p><%= media_item.user.username %></p>
-    <p><%= Time.at(media_item.created_time.to_i).strftime("%Y-%m-%d %H:%M") %></p>
+    <p class="text-center">
+      <%= media_item.user.username %>
+      <br /><% post_time = Time.at(media_item.created_time.to_i) %>
+      <span class="small">Posted <%= relative_time(post_time) %></span>
+    </p>
   </div>
 <% end %>

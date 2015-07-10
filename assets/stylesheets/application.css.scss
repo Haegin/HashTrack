@@ -1,0 +1,25 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "compass/css3";
+
+$light-grey: #EEEFF0;
+$dark-grey:  #333333;
+
+body {
+  background: image-url("background.png");
+}
+
+.container {
+  padding-top: 1em;
+  height: 100%;
+  background: white;
+}
+
+.image {
+  float: left;
+  padding: 1em;
+  border: 1px solid $dark-grey;
+  margin: 0.5em;
+  background: $light-grey;
+  @include border-radius(4px);
+}
